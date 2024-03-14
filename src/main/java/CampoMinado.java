@@ -140,6 +140,17 @@ public class CampoMinado {
         if (vizinhas == 0) {
             for (var i = Math.max(0, x - 1); i < Math.min(nrLinhas, x + 2); ++i) {
                 for (var j = Math.max(0, y - 1); j < Math.min(nrColunas, y + 2); ++j) {
+                    if (estado[i][j] >= TAPADO) { // Verificar se a quadricula ainda não foi revelada
+
+                        int numMinasVizinhas = contarMinasVizinhas(i, j);
+                        estado[i][j] = numMinasVizinhas;
+
+                        if (numMinasVizinhas == 0) {
+                            revelarQuadriculasVizinhas(i, j);
+                        }
+                    }}}}}
+
+/*
                     estado[i][j] = VAZIO;
                     vizinhas = contarMinasVizinhas(i,j);
                         if (vizinhas == 0){
@@ -150,7 +161,7 @@ public class CampoMinado {
             }
         }
     }
-  /*  private void revelarQuadriculasVizinhas(int x, int y) {
+    private void revelarQuadriculasVizinhas(int x, int y) {
         for (var i = Math.max(0, x - 1); i < Math.min(nrLinhas, x + 2); ++i) {
             for (var j = Math.max(0, y - 1); j < Math.min(nrColunas, y + 2); ++j) {
                 revelarQuadricula(i, j);

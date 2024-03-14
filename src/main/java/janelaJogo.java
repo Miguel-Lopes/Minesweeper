@@ -18,26 +18,6 @@ public class janelaJogo extends JFrame {
         this.botoes = new BotaoCampoMinado[nrLinhas][nrColunas];
 
         janelaJogoFacil.setLayout(new GridLayout(nrLinhas, nrColunas));
-
-        // Criar e adicionar os botões à janela
-        for (int linha = 0; linha < nrLinhas; ++linha) {
-            for (int coluna = 0; coluna < nrColunas; ++coluna) {
-
-                botoes[linha][coluna] = new BotaoCampoMinado(linha, coluna);
-                botoes[linha][coluna].addActionListener(this::btnCampoMinadoActionPerformed);
-                botoes[linha][coluna].addMouseListener(mouseListener);
-                janelaJogoFacil.add(botoes[linha][coluna]);
-            }
-
-
-            setContentPane(janelaJogoFacil);
-            // Destrói esta janela, removendo-a completamente da memória.
-            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            // Causes this Window to be sized to fit the preferred size and layouts of its subcomponents.
-            pack();
-            setVisible(true);
-        }
-
         MouseListener mouseListener=new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -48,8 +28,8 @@ public class janelaJogo extends JFrame {
                     return;
                 }
                 var botao = (BotaoCampoMinado) e.getSource();
-                var x = botao.getColuna();
-                var y = botao.getLinha();
+                var x = botao.getLinha();
+                var y = botao.getColuna();
 
                 var estadoQuadricula = campoMinado.getEstadoQuadricula(x, y);
                 if (estadoQuadricula == CampoMinado.TAPADO) {
@@ -71,6 +51,26 @@ public class janelaJogo extends JFrame {
             public void mouseExited(MouseEvent e) {
             }
         };
+        // Criar e adicionar os botões à janela
+        for (int linha = 0; linha < nrLinhas; ++linha) {
+            for (int coluna = 0; coluna < nrColunas; ++coluna) {
+
+                botoes[linha][coluna] = new BotaoCampoMinado(linha, coluna);
+                botoes[linha][coluna].addActionListener(this::btnCampoMinadoActionPerformed);
+                botoes[linha][coluna].addMouseListener(mouseListener);
+                janelaJogoFacil.add(botoes[linha][coluna]);
+            }
+
+
+            setContentPane(janelaJogoFacil);
+            // Destrói esta janela, removendo-a completamente da memória.
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            // Causes this Window to be sized to fit the preferred size and layouts of its subcomponents.
+            pack();
+            setVisible(true);
+        }
+
+
 
 
     }
