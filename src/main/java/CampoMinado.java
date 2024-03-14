@@ -43,7 +43,7 @@ public class CampoMinado {
         if (jogoTerminado || estado[x][y] < TAPADO) {
             return;
         }
-        if (primeiraJogada) {
+        if (!primeiraJogada) {
             primeiraJogada = true;
             colocarMinas(x, y);
             instanteInicioJogo = System.currentTimeMillis();
@@ -140,10 +140,10 @@ public class CampoMinado {
         if (vizinhas == 0) {
             for (var i = Math.max(0, x - 1); i < Math.min(nrLinhas, x + 2); ++i) {
                 for (var j = Math.max(0, y - 1); j < Math.min(nrColunas, y + 2); ++j) {
-                    estado[x][y] = VAZIO;
-                    vizinhas = contarMinasVizinhas(x,y);
+                    estado[i][j] = VAZIO;
+                    vizinhas = contarMinasVizinhas(i,j);
                         if (vizinhas == 0){
-                            revelarQuadriculasVizinhas(x,y);//Se não revelar recursivamente voltar aqui
+                            revelarQuadriculasVizinhas(i,j);
                         }
                 }
 
@@ -178,6 +178,12 @@ private int desmarcarQuadricula(int x, int y) {
     }
 
     public long getDuracaoJogo() {
+        if (primeiraJogada) {
+            return 0;
+        }
+        if (!jogoTerminado) {
+            return System.currentTimeMillis() - instanteInicioJogo;
+        }
         return duracaoJogo;
     }
 }

@@ -29,14 +29,15 @@ public class MinesFinder extends JFrame {
 
     private void btnJogoFacilActionPerformed(ActionEvent e) {
         var janela = new janelaJogo(new CampoMinado(9,9, 10));
-        janela.setVisible(true); // se não foi executado no construtor…
+        janela.setVisible(true);
     }
     private void btnJogoMedioActionPerformed(ActionEvent e) {
         var janela = new janelaJogo(new CampoMinado(21,21, 50));
         janela.setVisible(true);
     }
     private void btnJogoDificilActionPerformed(ActionEvent e) {
-        // TODO
+        var janela = new janelaJogo(new CampoMinado(100,100, 1000));
+        janela.setVisible(true);
     }
 
     private void sairActionPerformed(ActionEvent e) {
