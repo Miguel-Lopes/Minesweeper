@@ -143,14 +143,21 @@ public class CampoMinado {
                     estado[i][j] = VAZIO;
                     vizinhas = contarMinasVizinhas(i,j);
                         if (vizinhas == 0){
-                            revelarQuadriculasVizinhas(i,j);
+                            revelarQuadricula(i,j);
                         }
                 }
 
             }
         }
     }
-
+  /*  private void revelarQuadriculasVizinhas(int x, int y) {
+        for (var i = Math.max(0, x - 1); i < Math.min(nrLinhas, x + 2); ++i) {
+            for (var j = Math.max(0, y - 1); j < Math.min(nrColunas, y + 2); ++j) {
+                revelarQuadricula(i, j);
+            }
+        }
+    }
+*/
 private int marcarComoTendoMina(int x, int y) {
 
         if (estado[x][y] == TAPADO || estado[x][y] == DUVIDA)
