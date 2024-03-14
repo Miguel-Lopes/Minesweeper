@@ -144,7 +144,7 @@ public class CampoMinado {
                     vizinhas = contarMinasVizinhas(i,j);
                         if (vizinhas == 0){
                             revelarQuadricula(i,j);
-                        }
+                            }
                 }
 
             }
@@ -158,7 +158,7 @@ public class CampoMinado {
         }
     }
 */
-private int marcarComoTendoMina(int x, int y) {
+  protected int marcarComoTendoMina(int x, int y) {
 
         if (estado[x][y] == TAPADO || estado[x][y] == DUVIDA)
 estado[x][y] = MARCADO;
@@ -166,7 +166,7 @@ estado[x][y] = MARCADO;
         return  estado[x][y];
 
     }
-private int marcarComoSuspeita(int x, int y) {
+protected int marcarComoSuspeita(int x, int y) {
 
         if (estado[x][y] == TAPADO || estado[x][y] == MARCADO)
             estado[x][y] = DUVIDA;
@@ -175,7 +175,7 @@ private int marcarComoSuspeita(int x, int y) {
 
     }
 
-private int desmarcarQuadricula(int x, int y) {
+protected int desmarcarQuadricula(int x, int y) {
 
         if (estado[x][y] == DUVIDA || estado[x][y] == MARCADO)
             estado[x][y] = TAPADO;
